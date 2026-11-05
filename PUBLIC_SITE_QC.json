@@ -1,0 +1,283 @@
+{
+ "generated": "2026-11-04 23:17 America/Chicago",
+ "edition_source": "v2.5 motor-models (private build sha256 d1e99aa193c30c6ec0dba60c239e661a5423704a6480a538a1717b0e6c7ff43c)",
+ "paths": {
+  "landing": "index.html",
+  "A": "lean/index.html",
+  "B": "with-data/index.html",
+  "C": "full/index.html"
+ },
+ "sizes_bytes": {
+  "landing": 4570,
+  "A": 2104219,
+  "B": 2542729,
+  "C": 9518864,
+  "README": 2246,
+  "tokens": 12042
+ },
+ "static_qc": {
+  "generated_by": "public_site_v25_tools/qc_public_v25.py",
+  "drive_ids_checked": 150,
+  "static": {
+   "A": {
+    "drive.google.com": 0,
+    "docs.google.com": 0,
+    "drive_ids_known": 0,
+    "drive_ids_generic_33char": 0,
+    "data_webp": 0,
+    "data_jpeg": 0,
+    "data_png": 0,
+    "data_gif": 0,
+    "/workspace": 0,
+    "/home/box": 0,
+    "My Drive/": 0,
+    "onedrive-backup": 0,
+    "quotes_over_25_words": 0,
+    "quotes_over_25_sample": [],
+    "scan-toggle": 0,
+    "redraw-scan": 0,
+    "Drive link removed (dead hrefs)": 0,
+    "broken cite hrefs": 0,
+    "title": "ECET 231 Lab Manual — Digital Reconstruction v2.5 motor-models — public edition A"
+   },
+   "B": {
+    "drive.google.com": 0,
+    "docs.google.com": 0,
+    "drive_ids_known": 0,
+    "drive_ids_generic_33char": 0,
+    "data_webp": 0,
+    "data_jpeg": 0,
+    "data_png": 0,
+    "data_gif": 0,
+    "/workspace": 0,
+    "/home/box": 0,
+    "My Drive/": 0,
+    "onedrive-backup": 0,
+    "quotes_over_25_words": 0,
+    "quotes_over_25_sample": [],
+    "scan-toggle": 0,
+    "redraw-scan": 0,
+    "Drive link removed (dead hrefs)": 0,
+    "broken cite hrefs": 0,
+    "title": "ECET 231 Lab Manual — Digital Reconstruction v2.5 motor-models — public edition B"
+   },
+   "landing": {
+    "drive.google.com": 0,
+    "docs.google.com": 0,
+    "drive_ids_known": 0,
+    "drive_ids_generic_33char": 0,
+    "data_webp": 0,
+    "data_jpeg": 0,
+    "data_png": 0,
+    "data_gif": 0,
+    "/workspace": 0,
+    "/home/box": 0,
+    "My Drive/": 0,
+    "onedrive-backup": 0,
+    "quotes_over_25_words": 0,
+    "quotes_over_25_sample": [],
+    "scan-toggle": 0,
+    "redraw-scan": 0,
+    "Drive link removed (dead hrefs)": 0,
+    "broken cite hrefs": 0,
+    "title": "ECET 231 Electrical Power &amp; Machinery — Motor Intuition Manual"
+   }
+  },
+  "C_byte_identical_to_v25": true,
+  "C_sha256": "d1e99aa193c30c6ec0dba60c239e661a5423704a6480a538a1717b0e6c7ff43c",
+  "A_hw_spans_nonempty": 0,
+  "A_inv_items": 0,
+  "A_flagged_counts": {
+   "186 W": 0,
+   "94.566": 0,
+   "221.5": 0,
+   ".416": 0,
+   "72.32": 0,
+   "134.04": 0,
+   "1758": 0,
+   "3.7": 2,
+   "130": 58,
+   "1.6": 28,
+   "1.8": 36
+  },
+  "A_MMD": {
+   "public_edition": "A",
+   "jon_arrays_nonempty": 0,
+   "Ra": null,
+   "amKt": null
+  },
+  "B_MMD_jon_equals_v25": true,
+  "A_MM_jon_values_in_jon_context": {},
+  "A_MM_jon_values_sample": {},
+  "A_collateral": {
+   "style_with_dash": 0,
+   "std/§/p./Figure/ISBN dash": 0
+  },
+  "B_jon_hash": "70a20a6b566f6d6d8a5f9348b5d784db0d9684ceae91cfdd32188c1ae43858b9",
+  "B_jon_counts": {
+   "hw_spans": 525,
+   "lab_cells": 731
+  },
+  "v25_jon_hash": "70a20a6b566f6d6d8a5f9348b5d784db0d9684ceae91cfdd32188c1ae43858b9",
+  "B_jon_hash_ok": true,
+  "measured_data_hash": "4113523d0184680fffed1ba0d58ec16bb68be444215aac38cba9cd5cd5024ef6",
+  "measured_data_hash_ok": true,
+  "landing_mentions_motor_models": true,
+  "readme_mentions_motor_models": true,
+  "schema_in_A_B": {
+   "A": "2.5",
+   "B": "2.5"
+  },
+  "toc_links": {
+   "A": {
+    "motor-models": true,
+    "mm-r1": true,
+    "mm-r2": true,
+    "mm-r3": true,
+    "mm-th": true,
+    "mm-bldc": true
+   },
+   "B": {
+    "motor-models": true,
+    "mm-r1": true,
+    "mm-r2": true,
+    "mm-r3": true,
+    "mm-th": true,
+    "mm-bldc": true
+   }
+  },
+  "thermalrc_pending": {
+   "A": 0,
+   "B": 0
+  },
+  "fails": [],
+  "verdict": "PASS"
+ },
+ "chrome": {
+  "landing": {
+   "n_console_errors": 0,
+   "nan_in_page_text": false,
+   "nan_note": "",
+   "overflow": {
+    "384": false,
+    "2560": false
+   },
+   "scrollWidth": {
+    "384": 384,
+    "2560": 2560
+   },
+   "mm_widgets": 0,
+   "mm_out_nan": [],
+   "datasheet_children": null,
+   "verify_children": null,
+   "buttons": 0
+  },
+  "A": {
+   "n_console_errors": 0,
+   "nan_in_page_text": false,
+   "nan_note": "",
+   "overflow": {
+    "384": false,
+    "2560": false
+   },
+   "scrollWidth": {
+    "384": 384,
+    "2560": 2560
+   },
+   "mm_widgets": 14,
+   "mm_out_nan": [],
+   "datasheet_children": 5,
+   "verify_children": 3,
+   "buttons": 295
+  },
+  "B": {
+   "n_console_errors": 0,
+   "nan_in_page_text": true,
+   "nan_note": "B/C: the word NaN appears only inside embedded QC report text (\"NaN/Infinity = 0\" etc.); MM widget outputs with NaN/undefined: none",
+   "overflow": {
+    "384": false,
+    "2560": false
+   },
+   "scrollWidth": {
+    "384": 384,
+    "2560": 2560
+   },
+   "mm_widgets": 14,
+   "mm_out_nan": [],
+   "datasheet_children": 5,
+   "verify_children": 3,
+   "buttons": 2387
+  },
+  "C": {
+   "n_console_errors": 0,
+   "nan_in_page_text": true,
+   "nan_note": "B/C: the word NaN appears only inside embedded QC report text (\"NaN/Infinity = 0\" etc.); MM widget outputs with NaN/undefined: none",
+   "overflow": {
+    "384": false,
+    "2560": false
+   },
+   "scrollWidth": {
+    "384": 384,
+    "2560": 2560
+   },
+   "mm_widgets": 14,
+   "mm_out_nan": [],
+   "datasheet_children": 5,
+   "verify_children": 3,
+   "buttons": 2392
+  }
+ },
+ "mm_headless": {
+  "A": {
+   "widgets": 14,
+   "unmounted": [],
+   "cvMismatch": 0,
+   "sweepCases": 364,
+   "sweepFail": 0,
+   "uiExtremeBad": 0,
+   "consoleErrors": 0,
+   "overflow360": 0,
+   "overflow2560": 0
+  },
+  "B": {
+   "widgets": 14,
+   "unmounted": [],
+   "cvMismatch": 0,
+   "sweepCases": 364,
+   "sweepFail": 0,
+   "uiExtremeBad": 0,
+   "consoleErrors": 0,
+   "overflow360": 0,
+   "overflow2560": 0
+  }
+ },
+ "build": {
+  "steps": [
+   "A collateral restored from B (non-Jon contexts): {'style': 14, 'cite': 102, 'standard': 101, 'bib': 65}",
+   "A scrubbed values kept (Jon-value contexts): 1609",
+   "A motor-models body values scrubbed: 14",
+   "broken cite anchors rebuilt from v2.5 source (B): {'rebuilt': 32, 'unmatched': 0}",
+   "A cite page/figure numbers restored from own anchor: 5",
+   "broken cite anchors rebuilt from v2.5 source (A): {'rebuilt': 32, 'unmatched': 0}"
+  ],
+  "counts": {},
+  "repair_unaligned": [
+   334,
+   323
+  ],
+  "sizes": {
+   "A": 2104219,
+   "B": 2542729,
+   "C": 9518864
+  },
+  "restored": {
+   "style": 14,
+   "cite": 107,
+   "standard": 101,
+   "bib": 65
+  },
+  "kept_scrubs": 1609,
+  "drive_ids_known_to_redact": 106
+ },
+ "verdict": "PASS"
+}

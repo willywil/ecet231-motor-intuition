@@ -1,0 +1,161 @@
+/* ECET 231 Lab Manual — design-system PROPOSAL (not applied). 2026-11-04.
+   Rule: nothing here may change, restyle or hide Jon's measured values.
+   `.hw`, `.hw.unc`, `.erased`, scanned <img> and the static matplotlib graphs are
+   deliberately NOT restyled: provenance badges are ADDED next to them, never on them.
+   Contrast ratios (WCAG 2.x formula) are in REVIEW.md §C and measurements.json. */
+
+:root{
+  /* ---- type scale (1.2 minor third, 16px base) ---- */
+  --font-body: "Times New Roman", Times, serif;            /* scanned-page reconstruction */
+  --font-ui: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; /* cards, nav, tables */
+  --font-mono: Consolas, "DejaVu Sans Mono", monospace;    /* entry cells, chains */
+  --fs-xs: 0.8125rem;  /* 13px  minimum for any text incl. captions, SVG ticks at 1x */
+  --fs-sm: 0.875rem;   /* 14px  captions, provenance, table cells */
+  --fs-md: 1rem;       /* 16px  body */
+  --fs-lg: 1.2rem;     /* 19.2px h4 / widget question */
+  --fs-xl: 1.44rem;    /* 23px  h3 */
+  --fs-2xl: 1.728rem;  /* 27.6px h2 (lab title) */
+  --fs-3xl: 2.488rem;  /* 39.8px h1 */
+  --lh-tight: 1.25; --lh-body: 1.5;
+  --measure: 72ch;     /* max line length for prose */
+
+  /* ---- spacing (4px grid) ---- */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
+  --radius: 6px; --radius-pill: 999px;
+
+  /* ---- color tokens (contrast vs --surface #fff unless noted) ---- */
+  --canvas: #eef0f3;        /* page background */
+  --surface: #ffffff;
+  --ink: #1b1f27;           /* 16.51:1 */
+  --ink-muted: #4a5363;     /* 7.75:1 (6.79:1 on canvas) — replaces #888 (3.54:1) */
+  --line: #c9ced6;          /* decorative dividers only */
+  --line-strong: #767f8c;   /* input/control borders 4.05:1 (UI ≥3:1) — replaces #9cf (1.62:1) */
+  --accent: #1f5fbf;        /* links, focus 6.09:1 */
+  --focus: #1f5fbf;
+  --ok: #1d7a3a;            /* 5.39:1 */
+  --warn: #b3261e;          /* 6.54:1 */
+
+  /* provenance (fg/bg pairs; every badge also carries a text label + glyph) */
+  --prov-measured-fg:#1a3fb5; --prov-measured-bg:#e6ecfb; /* 7.33:1  ● Measured — Jon 2012 (matches existing .hw ink) */
+  --prov-computed-fg:#5b3a99; --prov-computed-bg:#efe9f8; /* 7.04:1  ƒ Computed from measured */
+  --prov-cited-fg:#0b6e4f;    --prov-cited-bg:#e3f4ec;    /* 5.49:1  ❝ Cited / datasheet */
+  --prov-model-fg:#8a4200;    --prov-model-bg:#fff1e0;    /* 6.61:1  ∿ Theoretical model */
+  --prov-blank-fg:#4b5563;    --prov-blank-bg:#f1f2f4;    /* 6.75:1  ○ Blank / your entry */
+
+  --state-invalid-fg:#9b1c16; --state-invalid-bg:#fdecea; /* 7.14:1 */
+  --state-saved-fg:#1d6b34;   --state-saved-bg:#e6f4ea;   /* 5.77:1 */
+
+  /* layout */
+  --nav-w: 280px;
+  --page-w: 8.5in;          /* scanned-page column keeps paper width */
+  --target: 44px;           /* bench touch target */
+  --target-min: 24px;       /* WCAG 2.5.8 floor */
+}
+
+/* ---- high-contrast tokens: OS setting or .hc toggle ---- */
+@media (prefers-contrast: more){ :root{ --ink:#000; --ink-muted:#000; --canvas:#fff; --line:#000; --line-strong:#000; --accent:#0030b0; --focus:#0030b0; --warn:#a00000; } }
+:root.hc{ --ink:#000; --ink-muted:#000; --canvas:#fff; --line:#000; --line-strong:#000; --accent:#0030b0; --focus:#0030b0; --warn:#a00000; }
+@media (forced-colors: active){
+  .badge,.card,.etable input,.tip{ border:1px solid CanvasText; forced-color-adjust:auto; }
+  :focus-visible{ outline:3px solid Highlight; }
+}
+
+/* ---- breakpoints ----
+   phone  <  600px : single column, nav = top drawer, tables scroll in their own box
+   laptop  600–1279: nav drawer + page column
+   desktop 1280–2199: sticky nav 280px | page 8.5in | context rail (graph/table/flag) 
+   wide   ≥ 2200px (27"/32"): nav | page | widget/graph rail side-by-side (2 columns of cards) */
+.layout{ display:grid; grid-template-columns:1fr; gap:var(--sp-5); }
+@media (min-width:1280px){ .layout{ grid-template-columns:var(--nav-w) minmax(0,var(--page-w)) minmax(0,1fr); } }
+@media (min-width:2200px){ .layout{ grid-template-columns:var(--nav-w) var(--page-w) minmax(0,1fr) minmax(0,1fr); } }
+
+/* ---- nav (sticky, scrollspy, collapsible lab groups) ---- */
+.nav{ position:sticky; top:0; max-height:100vh; overflow:auto; font:var(--fs-sm)/1.4 var(--font-ui); background:var(--surface); border-right:1px solid var(--line); }
+.nav a{ display:flex; align-items:center; min-height:var(--target); padding:0 var(--sp-3); color:var(--ink); text-decoration:none; }
+.nav a[aria-current="true"]{ background:var(--prov-measured-bg); box-shadow:inset 4px 0 0 var(--accent); font-weight:600; }
+.nav details>summary{ min-height:var(--target); display:flex; align-items:center; cursor:pointer; padding:0 var(--sp-3); font-weight:600; }
+@media (max-width:599px){ .nav{ position:fixed; inset:0 0 auto 0; max-height:0; } .nav[data-open]{ max-height:85vh; } }
+.skip-link{ position:absolute; left:-9999px; } .skip-link:focus{ left:var(--sp-2); top:var(--sp-2); z-index:10; }
+.backlinks{ position:sticky; bottom:var(--sp-4); display:flex; gap:var(--sp-2); justify-content:flex-end; }
+.backlinks a{ min-height:var(--target); min-width:var(--target); padding:0 var(--sp-3); border-radius:var(--radius-pill); background:var(--surface); border:1px solid var(--line-strong); display:inline-flex; align-items:center; }
+
+/* ---- focus (all interactive) ---- */
+:focus-visible{ outline:3px solid var(--focus); outline-offset:2px; }
+
+/* ---- provenance badge ---- */
+.badge{ display:inline-flex; align-items:center; gap:4px; font:600 var(--fs-xs)/1.6 var(--font-ui); padding:0 var(--sp-2); border-radius:var(--radius-pill); }
+.badge::before{ content:attr(data-glyph); }
+.badge--measured{ color:var(--prov-measured-fg); background:var(--prov-measured-bg); }
+.badge--computed{ color:var(--prov-computed-fg); background:var(--prov-computed-bg); }
+.badge--cited   { color:var(--prov-cited-fg);    background:var(--prov-cited-bg); }
+.badge--model   { color:var(--prov-model-fg);    background:var(--prov-model-bg); }
+.badge--blank   { color:var(--prov-blank-fg);    background:var(--prov-blank-bg); }
+.legend{ display:flex; flex-wrap:wrap; gap:var(--sp-2); padding:var(--sp-2) var(--sp-3); border:1px solid var(--line); border-radius:var(--radius); }
+
+/* ---- widget card: header(badge+question+flag) / intuition / controls|plot / details(math, derivation, source) ---- */
+.card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:var(--sp-4) var(--sp-5); margin:var(--sp-5) 0; font:var(--fs-sm)/var(--lh-body) var(--font-ui); color:var(--ink); }
+.card__head{ display:flex; align-items:flex-start; gap:var(--sp-3); }
+.card__q{ font:600 var(--fs-lg)/var(--lh-tight) var(--font-ui); margin:0; flex:1; }
+.card__body{ display:grid; grid-template-columns:minmax(240px,320px) minmax(0,1fr); gap:var(--sp-4); }
+@media (max-width:599px){ .card__body{ grid-template-columns:1fr; } }
+.card details{ border-top:1px solid var(--line); margin-top:var(--sp-3); }
+.card summary{ min-height:var(--target); display:flex; align-items:center; cursor:pointer; font-weight:600; }
+
+/* ---- slider row: label | value+unit | reset ; default tick shown ---- */
+.slider{ display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:var(--sp-1) var(--sp-2); margin:var(--sp-2) 0; }
+.slider label{ font-weight:600; }
+.slider output{ font:600 var(--fs-sm) var(--font-mono); color:var(--accent); min-width:7ch; text-align:right; }
+.slider .unit{ color:var(--ink-muted); }
+.slider input[type=range]{ grid-column:1/-1; width:100%; height:var(--target); accent-color:var(--accent); }
+.slider .default{ grid-column:1/-1; font-size:var(--fs-xs); color:var(--ink-muted); }  /* "default 120 V" */
+.slider button.reset{ min-height:var(--target); min-width:var(--target); }
+.card .reset-all{ min-height:var(--target); }
+
+/* ---- entry table: notebook style + states ---- */
+.etable{ overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.etable table{ border-collapse:collapse; font:var(--fs-sm) var(--font-ui); min-width:100%; }
+.etable caption{ text-align:left; font-weight:600; padding:var(--sp-2) var(--sp-3); }
+.etable th{ position:sticky; top:0; background:var(--canvas); font-weight:600; padding:var(--sp-2); border-bottom:2px solid var(--line-strong); }
+.etable th .unit{ display:block; font-weight:400; color:var(--ink-muted); }
+.etable td{ border:1px solid var(--line); padding:0; }
+.etable td>.cell{ display:flex; align-items:center; }
+.etable input{ width:100%; min-height:var(--target); border:0; border-bottom:1px solid var(--line-strong); padding:0 var(--sp-2); font:var(--fs-sm) var(--font-mono); background:transparent; }
+.etable input:focus-visible{ outline:3px solid var(--focus); outline-offset:-3px; background:#f5f8ff; }
+.etable input[aria-invalid="true"]{ border-bottom:2px solid var(--warn); background:var(--state-invalid-bg); }  /* value is kept verbatim */
+.etable .msg{ font-size:var(--fs-xs); color:var(--state-invalid-fg); padding:2px var(--sp-2); }      /* "⚠ not a number — kept as typed" */
+.etable td.calc{ background:var(--prov-computed-bg); color:var(--prov-computed-fg); font-family:var(--font-mono); }
+.etable .status{ font-size:var(--fs-xs); }
+.etable .status[data-state="saved"]{ color:var(--state-saved-fg); background:var(--state-saved-bg); padding:0 var(--sp-2); border-radius:var(--radius-pill); } /* "✓ Saved 6:41 PM" */
+.etable .status[data-state="unsaved"]{ color:var(--warn); }
+.tbar button,.card button{ min-height:var(--target); padding:0 var(--sp-4); border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--surface); font:600 var(--fs-sm) var(--font-ui); color:var(--ink); }
+
+/* ---- graphs ---- */
+figure.graph,.wplot{ margin:var(--sp-4) 0; }
+figure.graph svg,.wplot svg{ width:100%; height:auto; }
+.wplot svg text{ font-size:13px; }  /* live plots only — static matplotlib SVGs: re-export with ≥10pt ticks instead */
+.tip{ position:absolute; pointer-events:none; max-width:260px; padding:var(--sp-2) var(--sp-3); background:var(--ink); color:#fff; border-radius:var(--radius); font:var(--fs-xs)/1.4 var(--font-ui); }
+/* tip content: "R = 1773 rpm @ 0.169 N·m  ● Measured — Jon 2012 · Lab 5 Table 1 · p.29 [· ⚠ uncertain reading]" */
+.series-toggle{ display:flex; gap:var(--sp-2); flex-wrap:wrap; }
+.series-toggle label{ min-height:var(--target); display:inline-flex; align-items:center; gap:var(--sp-1); }
+
+/* ---- flag control ---- */
+.flag{ min-height:var(--target); min-width:var(--target); display:inline-flex; align-items:center; gap:var(--sp-1); border:1px solid var(--line-strong); border-radius:var(--radius-pill); background:var(--surface); color:var(--ink); font:600 var(--fs-xs) var(--font-ui); padding:0 var(--sp-3); }
+.flag[aria-pressed="true"]{ border-color:var(--warn); color:var(--state-invalid-fg); background:var(--state-invalid-bg); } /* "⚑ Flagged" text change, not color only */
+
+/* ---- motion ---- */
+@media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+
+/* ---- print ---- */
+@page{ size:letter; margin:0.5in; }
+@media print{
+  .nav,.skip-link,.backlinks,.flag,.tbar,.slider input[type=range],.slider button,.series-toggle,.tip{ display:none!important; }
+  body{ background:#fff; }
+  .page,.section-block{ box-shadow:none; margin:0; max-width:none; min-height:0; padding:0; break-after:page; }
+  h2,h3,h4{ break-after:avoid; }
+  figure,figure.graph,table,.card,.etable{ break-inside:avoid; }
+  .etable{ overflow:visible; border:0; }
+  .etable input{ border:0; border-bottom:1px solid #000; }       /* entries print as filled lines */
+  .card details{ display:block; } .card details>*{ display:block!important; } /* print math expanded */
+  .slider output::after{ content:" (slider setting)"; font-weight:400; } /* records state shown */
+  a[href^="http"]::after{ content:" <" attr(href) ">"; font-size:9pt; word-break:break-all; }
+}

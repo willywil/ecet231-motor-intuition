@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECET 231 Electrical Power &amp; Machinery — Motor Intuition Manual</title>
+<link rel="stylesheet" href="design-tokens.css">
+<style>
+  body{margin:0;background:var(--canvas,#eef0f3);color:var(--ink,#1b1f27);
+    font:var(--fs-md,1rem)/var(--lh-body,1.5) var(--font-ui,system-ui,sans-serif);}
+  .wrap{max-width:960px;margin:0 auto;padding:var(--sp-6,32px) var(--sp-4,16px) var(--sp-7,48px);}
+  h1{font-size:var(--fs-2xl,1.728rem);line-height:var(--lh-tight,1.25);margin:0 0 var(--sp-4,16px);}
+  .lede{font-size:var(--fs-lg,1.2rem);color:var(--ink-muted,#4a5363);max-width:var(--measure,72ch);}
+  .cards{display:grid;gap:var(--sp-4,16px);margin:var(--sp-6,32px) 0;
+    grid-template-columns:1fr;}
+  @media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr);}}
+  .card{background:var(--surface,#fff);border:1px solid var(--line,#c9ced6);border-radius:var(--radius,6px);
+    padding:var(--sp-5,24px);display:flex;flex-direction:column;gap:var(--sp-3,12px);min-height:180px;}
+  .card h2{margin:0;font-size:var(--fs-xl,1.44rem);}
+  .card p{margin:0;flex:1;color:var(--ink-muted,#4a5363);}
+  .card a{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target,44px);
+    padding:0 var(--sp-4,16px);border-radius:var(--radius-pill,999px);background:var(--accent,#1f5fbf);
+    color:#fff;text-decoration:none;font-weight:600;}
+  .card a:focus-visible{outline:3px solid var(--focus,#1f5fbf);outline-offset:2px;}
+  .credits{margin-top:var(--sp-6,32px);padding-top:var(--sp-4,16px);border-top:1px solid var(--line,#c9ced6);
+    font-size:var(--fs-sm,0.875rem);color:var(--ink-muted,#4a5363);max-width:var(--measure,72ch);}
+  .tag{display:inline-block;font-size:var(--fs-xs,0.8125rem);font-weight:600;letter-spacing:.02em;
+    color:var(--accent,#1f5fbf);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>ECET 231 Electrical Power &amp; Machinery — Motor Intuition Manual</h1>
+  <p class="lede">A reconstruction of the Purdue University North Central ECET 231 Electrical Power and Machinery Lab Manual (Summer 2012), rebuilt as an interactive engineering reference. The end goal is a complete motor datasheet produced from the manual’s tests — either to characterize a motor you have, or to specify one for an application.</p>
+  <p class="lede"><b>New in v2.5 — Motor Models:</b> brushed DC and BLDC as one model, built up as differential equations: the LR armature with back-EMF and mechanics first, then the LRC model (winding capacitance, self-resonance), then more parasitics (brush drop, cable, saturation, cogging); thermals as first-order and two-node ODEs (heating, cooling, duty cycle, electro-thermal runaway); BLDC six-step vs FOC; and new LCR-meter / VNA tests that feed the datasheet. In all three editions.</p>
+
+  <div class="cards">
+    <article class="card">
+      <span class="tag">Edition A</span>
+      <h2>Lean</h2>
+      <p>Theory, widgets, analysis methods, motor models (LR → LRC → parasitics, thermal ODEs, BLDC), control, magnetics, blank datasheet tables, and redrawn schematics. No page scans, no handwritten 2012 measurements, no Drive links.</p>
+      <a href="lean/">Open lean edition</a>
+    </article>
+    <article class="card">
+      <span class="tag">Edition B</span>
+      <h2>With data</h2>
+      <p>Everything in A, plus Jonathan Wilhelm’s 2012 handwritten measurements as typed tables (with flags) and the analysis computed from them. Still no page scans.</p>
+      <a href="with-data/">Open with-data edition</a>
+    </article>
+    <article class="card">
+      <span class="tag">Edition C</span>
+      <h2>Full</h2>
+      <p>The complete v2.5 manual as built, including embedded PNC page scans. Shared with the copyright risk of those scans accepted by the publisher of this site.</p>
+      <a href="full/">Open full edition</a>
+    </article>
+  </div>
+
+  <div class="credits">
+    <p><b>Credits:</b> Original lab manual: Purdue University North Central ECET 231 (Summer 2012); handwritten measurements by Jonathan Wilhelm.</p>
+    <p>PNC manual content remains the property of its authors. Short book citations in editions A and B are limited to author, title, edition, and page, with at most one short quoted sentence. Edition C embeds the reconstructed page scans for study; redistribution of those scans beyond personal/educational use may require permission from the copyright holders.</p>
+  </div>
+</main>
+</body>
+</html>
